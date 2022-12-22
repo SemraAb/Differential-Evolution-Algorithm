@@ -24,11 +24,16 @@ D = length(lb)                           % Determining the number of decision va
 U = NaN(Np,D)                            % Matrix to store the trial solutions
 
 P = repmat(lb,Np,1) + repmat((ub-lb),Np,1).*rand(Np,D)    % Generation of the initial population
-
+    % Array row column, 5x5 Matrics 0-10
 for p = 1:Np
     f(p) = prob(P(p,:))                  % Evaluating the fitness function of the initial popultion
 end
 
+106.8245
+  219.6016
+  255.6129
+   58.9486
+  143.1726
 %% Iteration loop
 for t = 1: T
 
@@ -39,15 +44,15 @@ for t = 1: T
         idx = Candidates(randperm(Np-1,3)) % Selection of three random parters
         
         X1 = P(idx(1),:)                   % Assiming randomly selected solution 1
-        X2 = P(idx(2),:)                   % Assiming randomly selected solution 1 
-        X3 = P(idx(3),:)                   % Assiming randomly selected solution 1
+        X2 = P(idx(2),:)                   % Assiming randomly selected solution 2 
+        X3 = P(idx(3),:)                   % Assiming randomly selected solution 3
         
         V = X1 + F*(X2 - X3)               % Generating the donor vector
         
         
          %% Crossover
         
-        del = randi(D,1)                   % Generating the random variable delta
+        del = randi(D,1)                   % Generating the random variable delta (5->1)
         for j = 1:D                        
         
             if (rand <= Pc) || del == j    % Check for donor vector or target vector
